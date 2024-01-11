@@ -4,34 +4,8 @@
 {% block content %}
 
 <h1 class="text-center m-4">My todo list</h1>
+{% include "includes/new_todo_form.html" %}
 {% for todo in todo_list %}
-<div class="card p-3 my-3 flex-row shadow-sm justify-content-between">
-    <div>
-        {% if todo.is_completed %}
-        <h3><del>{{todo.title}} </del></h3>
-        <p><del>{{todo.created_at}}</del></p>
-        {% else %}
-        <h3 class="">{{todo.title}} </h3>
-        <p>{{todo.created_at}}</p>
-        {% endif %}
-    </div>
-    <div class="d-flex">
-        <div>
-        <form action="complete/{{todo.id}}" method='POST'>
-            {% csrf_token %}
-            <input type="submit" class='btn btn-primary' value="Complete">
-        </form>
-    </div>
-    <div>
-        <form action="delete/{{todo.id}}" method='POST'>
-            {% csrf_token %}
-            <input type="submit" class='btn btn-danger' value="Delete">
-        </form>
-    </div>
-    </div>
-    
- 
-</div>
-
+{% include "includes/todo.html" %}
 {% endfor %}
 {% endblock content %}

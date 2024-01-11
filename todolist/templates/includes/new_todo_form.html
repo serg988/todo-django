@@ -1,0 +1,11 @@
+<section>
+<form action='new_todo' method='POST' class="mb-5">
+    {% csrf_token %}
+    <label class="sr-only" for="todo">New Todo</label>
+    <div class="d-flex">
+        <input type="text" class="form-control mb-2 mr-sm-2" id="todo" name='title'>
+        <button type="submit" class="btn btn-primary mb-2 ms-1">Submit</button>
+    </div>
+  
+</form>
+</section>

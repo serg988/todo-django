@@ -1,0 +1,27 @@
+<section>
+<div class="card p-3 my-4 flex-row shadow justify-content-between">
+    <div>
+        {% if todo.is_completed %}
+        <h3><del>{{todo.title}} </del></h3>
+        <p><del>{{todo.created_at}}</del></p>
+        {% else %}
+        <h3 class="">{{todo.title}} </h3>
+        <p>{{todo.created_at}}</p>
+        {% endif %}
+    </div>
+    <div>
+        <div class="mb-1">
+        <form action="complete/{{todo.id}}" method='POST'>
+            {% csrf_token %}
+            <input type="submit" class='btn btn-primary' style="width: 7rem" value="Complete">
+        </form>
+    </div>
+    <div>
+        <form action="delete/{{todo.id}}" method='POST'>
+            {% csrf_token %}
+            <input type="submit" class='btn btn-danger' style="width: 7rem" value="Delete">
+        </form>
+    </div>
+    </div>
+</div>
+</section>
