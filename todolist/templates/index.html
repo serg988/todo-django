@@ -5,18 +5,31 @@
 
 <h1 class="text-center m-4">My todo list</h1>
 {% for todo in todo_list %}
-<div class="card p-3 my-3 flex-row justify-content-between">
+<div class="card p-3 my-3 flex-row shadow-sm justify-content-between">
     <div>
-        <h3>{{todo.title}} </h3>
+        {% if todo.is_completed %}
+        <h3><del>{{todo.title}} </del></h3>
+        <p><del>{{todo.created_at}}</del></p>
+        {% else %}
+        <h3 class="">{{todo.title}} </h3>
         <p>{{todo.created_at}}</p>
+        {% endif %}
     </div>
-    <div>
-        <form action="">
+    <div class="d-flex">
+        <div>
+        <form action="complete/{{todo.id}}" method='POST'>
             {% csrf_token %}
-            <input type="button" class='btn btn-primary' value="Complete">
-            <input type="button" class='btn btn-danger' value="Delete">
+            <input type="submit" class='btn btn-primary' value="Complete">
         </form>
     </div>
+    <div>
+        <form action="delete/{{todo.id}}" method='POST'>
+            {% csrf_token %}
+            <input type="submit" class='btn btn-danger' value="Delete">
+        </form>
+    </div>
+    </div>
+    
  
 </div>
 
