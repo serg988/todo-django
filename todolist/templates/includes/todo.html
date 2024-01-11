@@ -19,7 +19,11 @@
     <div>
         <form action="delete/{{todo.id}}" method='POST'>
             {% csrf_token %}
+            {% if todo.is_completed %}
             <input type="submit" class='btn btn-danger' style="width: 7rem" value="Delete">
+            {% else %}
+            <input type="submit" class='btn btn-danger' disabled style="width: 7rem" value="Delete">
+            {% endif %}
         </form>
     </div>
     </div>
